@@ -4,4 +4,4 @@ This plugin allow you to run all the requests in a folder, choosing which reques
 
 ### Screenshots
 
-![Modal screenshot](https://raw.githubusercontent.com/johnataa/insomnia-plugin-runner/main/insomnia-plugin-runner-screenshot.png)
+![Modal screenshot](https://github.com/johnataa/insomnia-plugin-runner/blob/main/insomnia-plugin-runner-screenshot.png)
