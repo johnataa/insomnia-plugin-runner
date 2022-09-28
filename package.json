@@ -1,6 +1,6 @@
 {
   "name": "insomnia-plugin-runner",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -19,10 +19,17 @@
       "core": "*"
     }
   },
+  "keywords": [
+    "insomnia",
+    "plugin",
+    "plugins",
+    "runner",
+    "requests"
+  ],
   "main": "dist/index.js",
   "scripts": {
-    "dev": "parcel watch -t electron --no-source-maps -o index.js src/index.js",
-    "build": "parcel build -t electron --no-source-maps -o index.js src/index.js"
+    "dev": "parcel watch --no-source-maps src/index.js",
+    "build": "parcel build --no-source-maps src/index.js"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -33,6 +40,6 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "babel-preset-react-app": "^10.0.1",
-    "parcel-bundler": "^1.12.5"
+    "parcel": "^2.7.0"
   }
 }
