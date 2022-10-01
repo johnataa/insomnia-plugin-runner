@@ -5,7 +5,8 @@ const style = {
     color: 'black',
     width: '50px',
     marginLeft: '3px',
-    paddingLeft: '3px'
+    paddingLeft: '3px',
+    border: '1px solid black'
 }
 
 export function DelayInput({ value, onChange }) {

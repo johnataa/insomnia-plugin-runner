@@ -1,27 +1,9 @@
 import React, { useState } from 'react'
-import { DelayInput, ListItem } from './components'
-
-const styles = {
-    modalContent: {
-        margin: '20px'
-    },
-    actionBar: {
-        marginBottom: '20px',
-        float: 'right'
-    },
-    requestButton: {
-        padding: '5px',
-        paddingLeft: '8px',
-        paddingRight: '8px',
-        cursor: 'pointer',
-        marginLeft: '5px'
-    }
-}
+import { ActionBar, ListItem } from './components'
 
 export default function App({ context, data }) {
     const [selectedRequests, setSelectedRequests] = useState([])
     const [statusRequest, setStatusRequest] = useState({})
-    const [delay, setDelay] = useState(200)
 
     const handleRequest = id => setSelectedRequests(reqs =>
         reqs.includes(id)
@@ -35,7 +17,7 @@ export default function App({ context, data }) {
             : []
     )
 
-    const runRequests = async () => {
+    const runRequests = async (delay, statusToStop) => {
         if (selectedRequests.length === 0)
             return
 
@@ -48,15 +30,18 @@ export default function App({ context, data }) {
                 [req._id]: response.statusCode
             }))
 
+            if (statusToStop !== 0 && response.statusCode >= statusToStop)
+                break
+
             if (delay)
-                await new Promise(r => setTimeout(r, parseInt(delay)))
+                await new Promise(r => setTimeout(r, delay))
         }
     }
 
     return (
-        <div style={styles.modalContent}>
+        <div style={{ margin: '20px' }}>
             <ul>
-                <ListItem 
+                <ListItem
                     onClick={selectAllRequests}
                     isChecked={data.requests.length === selectedRequests.length}
                     name="Select All"
@@ -77,13 +62,7 @@ export default function App({ context, data }) {
 
             <hr />
 
-            <div style={styles.actionBar}>
-                <DelayInput value={delay} onChange={setDelay} />
-
-                <button className='bg-success' style={styles.requestButton} onClick={runRequests}>
-                    Run Requests
-                </button>
-            </div>
+            <ActionBar onSubmit={runRequests} />
         </div>
     )
 }
